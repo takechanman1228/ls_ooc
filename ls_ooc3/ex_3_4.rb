@@ -1,37 +1,24 @@
 class Test
+  def call_private_method(o)
+    # privateメソッドはレシーバを指定できないので
+    # 自身のもつオブジェクトしか実行することができない
+    private_method
 
-  def call_m2(o)
-    m2
-  end
-  def call_self_m2(o)
-    self.m2
-  end
-  def call_o_m2(o)
-    o.m2
+    begin
+      # 異なるオブジェクトを実行することができない
+      o.call_protected_method()
+    rescue => error
+      puts error
+    end
+
   end
 
   private
-  def m2()
-    puts "m2"
+  def private_method
+    puts "succeeded in calling private method"
   end
-
 end
-
-
-
-
 
 o1 = Test.new
 o2 = Test.new
-
-begin
-  o1.call_self_m2(o2)
-rescue => error
-  puts error
-end
-
-begin
-  o1.call_o_m2(o2)
-rescue => error
-  puts error
-end
+o1.call_private_method(o2)

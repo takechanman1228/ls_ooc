@@ -1,17 +1,20 @@
 class Person
+  # クラス変数
   @@population = 0
   def initialize
     @@population += 1
   end
 
+  # クラスメソッド
   def self.population
     @@population
   end
-
-  def self.set_population(num)
+  # クラスメソッド
+  def Person.set_population(num)
     @@population = num
   end
 
+  #通常のメソッド
   def die
     @@population -= 1
   end

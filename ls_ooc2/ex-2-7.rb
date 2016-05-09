@@ -1,6 +1,8 @@
 class Array
-
   def ==(array)
+    if self.length != array.length
+      return false
+    end
     array.each_with_index {|item, idx|
       if self[idx].object_id != item.object_id
         return false
